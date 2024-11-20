@@ -2086,7 +2086,7 @@ class PromptCompressor:
                 text = text + "</llmlingua>"
 
             # Regular expression to match <llmlingua, rate=x, compress=y>content</llmlingua>, allowing rate and compress in any order
-            pattern = r"<llmlingua\s*(?:,\s*rate\s*=\s*([\d\.]+))?\s*(?:,\s*compress\s*=\s*(True|False))?\s*(?:,\s*rate\s*=\s*([\d\.]+))?\s*(?:,\s*compress\s*=\s*(True|False))?\s*>(.*?)</llmlingua>"
+            pattern = r"<llmlingua\s*(?:,\s*rate\s*=\s*([\d\.]+))?\s*(?:,\s*compress\s*=\s*(True|False))?\s*(?:,\s*rate\s*=\s*([\d\.]+))?\s*(?:,\s*compress\s*=\s*(True|False))?\s*>((?:[^<]*(?:<(?!/llmlingua>)[^>]*>)?)*?)</llmlingua>"
             matches = re.findall(pattern, text)
 
             # Extracting segment contents
